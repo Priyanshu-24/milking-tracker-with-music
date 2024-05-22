@@ -1,5 +1,17 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import History from "./components/History";
+import Home from "./components/Home";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/history" element={<History />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
