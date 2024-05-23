@@ -1,5 +1,7 @@
+import { useRef, useState } from "react";
+
 import Modal from "./Modal";
-import { useState } from "react";
+import musicFile from "./../assets/track.mp3";
 
 const Home = () => {
   const [milking, setMilking] = useState(false);
@@ -7,6 +9,8 @@ const Home = () => {
   const [timer, setTimer] = useState(0);
   const [timerId, setTimerId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const audioRef = useRef(null);
 
   const startTimer = () => {
     const id = setInterval(() => {
@@ -17,28 +21,34 @@ const Home = () => {
 
   const startMilking = () => {
     setMilking(true);
+    audioRef.current.src = musicFile;
+    audioRef.current.play();
     startTimer();
   };
 
   const handleResume = () => {
     setPaused(false);
+    audioRef.current.play();
     startTimer();
   };
 
   const handlePause = () => {
     setPaused(true);
     clearInterval(timerId);
+    audioRef.current.pause();
   };
 
   const stopMilking = () => {
     setMilking(false);
     setPaused(false);
     clearInterval(timerId);
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
     setIsModalOpen(true);
   };
 
   const handleModalSubmit = (quantity) => {
-    console.log(quantity);
+    console.log(quantity, timer);
     setIsModalOpen(false);
   };
 
@@ -56,6 +66,8 @@ const Home = () => {
       ) : (
         <button onClick={startMilking}>Start Milking</button>
       )}
+      <audio ref={audioRef} loop />
+
       <Modal isOpen={isModalOpen} onSubmit={handleModalSubmit} />
     </div>
   );
