@@ -13,51 +13,57 @@ const History = () => {
         </Link>
       </div>
       <div className="overflow-x-auto p-8">
-        <table className="min-w-full bg-white border border-gray-200">
-          <thead>
-            <tr>
-              <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
-                Date
-              </th>
-              <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
-                Start Time
-              </th>
-              <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
-                End Time
-              </th>
-              <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
-                Total Time
-              </th>
-              <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
-                Milk Quantity
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {history.map((session, index) => (
-              <tr key={index} className="hover:bg-gray-50">
-                <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {session?.date}
-                </td>
-                <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {session?.startTime}
-                </td>
-                <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {session?.endTime}
-                </td>
-                <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {dayjs()
-                    ?.startOf("day")
-                    ?.add(session?.totalTime, "second")
-                    ?.format("HH:mm:ss")}
-                </td>
-                <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {session?.quantity} liters
-                </td>
+        {history?.length ? (
+          <table className="min-w-full bg-white border border-gray-200">
+            <thead>
+              <tr>
+                <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
+                  Date
+                </th>
+                <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
+                  Start Time
+                </th>
+                <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
+                  End Time
+                </th>
+                <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
+                  Total Time
+                </th>
+                <th className="py-2 px-4 border-b border-gray-200 bg-gray-100">
+                  Milk Quantity
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {history.map((session, index) => (
+                <tr key={index} className="hover:bg-gray-50">
+                  <td className="py-2 px-4 border-b border-gray-200 text-center">
+                    {session?.date}
+                  </td>
+                  <td className="py-2 px-4 border-b border-gray-200 text-center">
+                    {session?.startTime}
+                  </td>
+                  <td className="py-2 px-4 border-b border-gray-200 text-center">
+                    {session?.endTime}
+                  </td>
+                  <td className="py-2 px-4 border-b border-gray-200 text-center">
+                    {dayjs()
+                      ?.startOf("day")
+                      ?.add(session?.totalTime, "second")
+                      ?.format("HH:mm:ss")}
+                  </td>
+                  <td className="py-2 px-4 border-b border-gray-200 text-center">
+                    {session?.quantity} liters
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="font-semibold text-lg">
+            No Previous Milking History Found
+          </div>
+        )}
       </div>
     </>
   );
