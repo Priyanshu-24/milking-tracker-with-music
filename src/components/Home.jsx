@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 
 import Modal from "./Modal";
+import dayjs from "dayjs";
 import musicFile from "./../assets/track.mp3";
 
 const Home = () => {
@@ -48,8 +49,20 @@ const Home = () => {
   };
 
   const handleModalSubmit = (quantity) => {
-    console.log(quantity, timer);
+    const dateFormatter = dayjs();
+
+    setTimer(0);
     setIsModalOpen(false);
+    const session = {
+      date: dateFormatter.format("DD-MM-YY"),
+      startTime: dateFormatter.subtract(timer, "second").format("HH:MM:SS"),
+      endTime: dateFormatter.format("HH:MM:SS"),
+      totalTime: timer,
+      quantity,
+    };
+    const history = JSON.parse(localStorage.getItem("milkingHistory")) || [];
+    history.push(session);
+    localStorage.setItem("milkingHistory", JSON.stringify(history));
   };
 
   return (
