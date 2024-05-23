@@ -56,8 +56,8 @@ const Home = () => {
     setIsModalOpen(false);
     const session = {
       date: dateFormatter.format("DD-MM-YY"),
-      startTime: dateFormatter.subtract(timer, "second").format("HH:MM:SS"),
-      endTime: dateFormatter.format("HH:MM:SS"),
+      startTime: dateFormatter.subtract(timer, "second").format("HH:MM:ss"),
+      endTime: dateFormatter.format("HH:MM:ss"),
       totalTime: timer,
       quantity,
     };
