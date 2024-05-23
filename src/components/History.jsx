@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
 const History = () => {
-  const history = JSON.parse(localStorage.getItem("milkingHistory")) || [];
+  const history = JSON?.parse(localStorage?.getItem("milkingHistory")) || [];
 
   return (
     <>
@@ -37,22 +37,22 @@ const History = () => {
             {history.map((session, index) => (
               <tr key={index} className="hover:bg-gray-50">
                 <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {session.date}
+                  {session?.date}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {session.startTime}
+                  {session?.startTime}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {session.endTime}
+                  {session?.endTime}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200 text-center">
                   {dayjs()
-                    .startOf("day")
-                    .add(session.totalTime, "second")
-                    .format("HH:mm:ss")}
+                    ?.startOf("day")
+                    ?.add(session?.totalTime, "second")
+                    ?.format("HH:mm:ss")}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200 text-center">
-                  {session.quantity} liters
+                  {session?.quantity} liters
                 </td>
               </tr>
             ))}

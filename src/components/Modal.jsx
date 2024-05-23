@@ -11,15 +11,23 @@ const Modal = ({ isOpen, onSubmit }) => {
   return (
     <div className="modal-container">
       <div className="modal-body">
-        <h2>Enter Milk Quantity</h2>
+        <h2 className="font-semibold text-lg">
+          Enter Milk Quantity (in liters)
+        </h2>
         <form onSubmit={handleSubmit}>
           <input
             type="number"
             step="0.1"
             ref={(input) => (milkQuantityInput = input)}
             required
+            className="border border-black rounded my-4 mr-2 p-2"
           />
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 rounded"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
